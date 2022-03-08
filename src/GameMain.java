@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.stream.Collectors;
+
+import static java.util.stream.Collectors.toList;
 
 
 public class GameMain {
@@ -56,22 +59,27 @@ public class GameMain {
         System.out.println(" ");
         System.out.println("------------ Sort using Streams by increment price");
 
+        System.out.println("------------ Game Price Increment");
 
-//      NESUPRANTU SITOS VIETOS IR AR GERAI CIA?
+        // padidiname kaina 2 ir susikuriame nauja lista gamenew su naujais price parametrais ir isprintinam
 
-        games.stream().forEach(game -> System.out.println(game.getPrice()));
-
-        games.forEach(game -> {
+        games.stream().forEach(game -> {
+            game.IncrementPrice(2);
             game.Printing();
         });
+
+        System.out.println(" ");
+        System.out.println("------------ Using Streams collect to a new gameNew list");
+
+        List<Game> newList = games.stream().collect(Collectors.toList());
 
         System.out.println(" ");
         System.out.println("------------ Sort using Streams Filter game price more ten 10 eur");
         List<Game> price10 = games.stream().filter(game -> !game.getPrice().equals(10.35)).toList();
 
-        for (Game game:price10) {
+        for (Game game : price10) {
             System.out.println(game);
-        };
+        }
 
         System.out.println(" ");
         System.out.println("------------ Sort using Streams Filter games have more ten 50 copies");
@@ -79,9 +87,9 @@ public class GameMain {
 
         List<Game> copies50 = games.stream().filter(game -> (game.getCopiesSold() > 50)).toList();
 
-        for (Game game:copies50) {
+        for (Game game : copies50) {
             System.out.println(game);
-        };
+        }
 
         System.out.println(" ");
         System.out.println("------------ Sort using Streams Sorted sort games by copies sold");
@@ -97,7 +105,7 @@ public class GameMain {
         System.out.println(" ");
 
         System.out.println("------------ Sort max using Streams Sorted sort games by copies sold");
-        Optional<Game>maxGamesbyCopies = games.stream().max(Comparator.comparingInt(Game::getCopiesSold));
+        Optional<Game> maxGamesbyCopies = games.stream().max(Comparator.comparingInt(Game::getCopiesSold));
         System.out.println(maxGamesbyCopies.get());
         System.out.println(" ");
 

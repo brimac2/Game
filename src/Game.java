@@ -62,7 +62,9 @@ public class Game {
                 '}');
     }
 
-    //        Streams ForEach method increment price
+   public void IncrementPrice (double increment) {
+         this.price = increment + this.price;
+   };
 
 
 
